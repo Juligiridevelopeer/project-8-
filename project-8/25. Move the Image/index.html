@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Move Image with Arrow Keys</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  #container {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    overflow: hidden;
+  }
+  #player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <img id="player" src="https://via.placeholder.com/50" alt="Player">
+</div>
+
+<script>
+  const player = document.getElementById('player');
+  const container = document.getElementById('container');
+
+  // Initial position of the player
+  let playerX = container.offsetWidth / 2;
+  let playerY = container.offsetHeight / 2;
+
+  // Function to update player position
+  function updatePlayerPosition() {
+    player.style.left = `${playerX}px`;
+    player.style.top = `${playerY}px`;
+  }
+
+  // Event listener for keyboard arrow keys
+  document.addEventListener('keydown', function(event) {
+    const speed = 10; // Adjust speed as needed
+
+    switch (event.key) {
+      case 'ArrowUp':
+        playerY = Math.max(playerY - speed, 0); // Prevent moving outside container top
+        break;
+      case 'ArrowDown':
+        playerY = Math.min(playerY + speed, container.offsetHeight - player.offsetHeight); // Prevent moving outside container bottom
+        break;
+      case 'ArrowLeft':
+        playerX = Math.max(playerX - speed, 0); // Prevent moving outside container left
+        break;
+      case 'ArrowRight':
+        playerX = Math.min(playerX + speed, container.offsetWidth - player.offsetWidth); // Prevent moving outside container right
+        break;
+    }
+
+    updatePlayerPosition();
+  });
+</script>
+
+</body>
+</html>

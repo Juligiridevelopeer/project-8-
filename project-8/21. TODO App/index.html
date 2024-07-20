@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple To-Do App</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    margin-right: 10px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+  <h2>My To-Do List</h2>
+  <input type="text" id="todoInput" placeholder="Enter a new task">
+  <button id="addButton">Add</button>
+  <ul id="todoList">
+    <!-- To-do items will be added dynamically here -->
+  </ul>
+
+  <script>
+    // Select elements
+    const todoInput = document.getElementById('todoInput');
+    const addButton = document.getElementById('addButton');
+    const todoList = document.getElementById('todoList');
+
+    // Function to add a new to-do item
+    function addTodo() {
+      // Get input value and trim whitespace
+      const todoText = todoInput.value.trim();
+
+      // Check if input value is not empty
+      if (todoText !== '') {
+        // Create new list item element
+        const newItem = document.createElement('li');
+        newItem.textContent = todoText;
+
+        // Append new item to the list
+        todoList.appendChild(newItem);
+
+        // Clear the input field after adding
+        todoInput.value = '';
+
+        // Focus back on the input field for convenience
+        todoInput.focus();
+      }
+    }
+
+    // Event listener for the add button
+    addButton.addEventListener('click', addTodo);
+
+    // Event listener for pressing Enter key in the input field
+    todoInput.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        addTodo();
+      }
+    });
+  </script>
+</body>
+</html>

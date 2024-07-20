@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Progress Bar</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+  }
+  .progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Height of the progress bar */
+    background-color: #f0f0f0;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+  }
+  .progress-bar {
+    height: 100%;
+    background-color: #4CAF50; /* Green color for the progress bar */
+    width: 0; /* Initial width is 0, will be updated with JavaScript */
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-container">
+  <div class="progress-bar" id="myProgressBar"></div>
+</div>
+
+<!-- Your page content goes here -->
+<h1>PW Skills</h1>
+<p>With accessibility and affordability being the support structure of high-quality, industry-relevant courses, PW Skills aims to empower professionals and students alike to either jumpstart their careers or leverage existing skills with new, future-driven upgrades that will help them realise their full potential.</p>
+<!-- Add more content to make the page scrollable -->
+
+<script>
+  // JavaScript code for the scroll progress bar
+  window.onscroll = function() { updateProgressBar() };
+
+  function updateProgressBar() {
+    // Calculate the scroll progress
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+
+    // Update the width of the progress bar
+    document.getElementById("myProgressBar").style.width = progress + "%";
+
+    // Show the progress bar when user starts scrolling
+    showProgressBar();
+  }
+
+  function showProgressBar() {
+    const progressBar = document.querySelector('.progress-container');
+    progressBar.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

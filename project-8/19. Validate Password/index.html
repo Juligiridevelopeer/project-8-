@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form Validation</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  form {
+    display: inline-block;
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  form > * {
+    margin-bottom: 10px;
+  }
+  .error-message {
+    color: red;
+  }
+  .success-message {
+    color: green;
+  }
+</style>
+</head>
+<body>
+  <form id="loginForm">
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    // JavaScript code for form validation
+    const form = document.getElementById('loginForm');
+    const messageElement = document.getElementById('message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get values from inputs
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Validate email
+      const isValidEmail = validateEmail(email);
+
+      // Validate password
+      const isValidPassword = validatePassword(password);
+
+      // Display appropriate message
+      if (isValidEmail && isValidPassword) {
+        showMessage("Valid email and password!", 'success');
+      } else {
+        showMessage("Invalid email or password!", 'error');
+      }
+    });
+
+    // Function to validate email
+    function validateEmail(email) {
+      // Simple check for presence of '@' symbol
+      return email.includes('@');
+    }
+
+    // Function to validate password
+    function validatePassword(password) {
+      // Check if password length is at least 8 characters
+      return password.length >= 8;
+    }
+
+    // Function to display message
+    function showMessage(message, type) {
+      messageElement.textContent = message;
+      messageElement.className = type === 'success' ? 'success-message' : 'error-message';
+    }
+  </script>
+</body>
+</html>

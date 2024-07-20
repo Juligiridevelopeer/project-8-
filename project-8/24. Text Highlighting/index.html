@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlight Long Words</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .highlight {
+    background-color: yellow;
+    padding: 2px;
+  }
+</style>
+</head>
+<body>
+
+<p id="paragraph">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer varius tincidunt tortor, vitae maximus sem ultricies sed. Phasellus sit amet urna convallis, rhoncus libero non, malesuada elit. Duis posuere scelerisque pretium. Pellentesque ut ultricies felis. Quisque varius velit vel velit pharetra, sed vulputate justo tempus. Sed euismod erat vitae lacus laoreet, et mattis ex rutrum. Vestibulum convallis velit quis dolor placerat, et aliquet leo convallis. Donec pulvinar arcu velit, et lacinia turpis feugiat at. Vivamus id lectus leo. Curabitur ultrices, lacus eu sollicitudin lacinia, ipsum turpis fermentum nulla, eu venenatis purus eros vel ex. Nulla nec tincidunt elit, id tincidunt ipsum. Duis scelerisque, augue in consectetur elementum, felis velit convallis purus, non faucibus libero ipsum vel urna.
+</p>
+
+<script>
+  const paragraph = document.getElementById('paragraph');
+  const words = paragraph.textContent.split(' ');
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > 8) {
+      const span = document.createElement('span');
+      span.textContent = words[i];
+      span.classList.add('highlight');
+      paragraph.replaceChild(span, paragraph.childNodes[i]);
+    }
+  }
+</script>
+
+</body>
+</html>

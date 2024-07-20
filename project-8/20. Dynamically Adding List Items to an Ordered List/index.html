@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add List Items Dynamically</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+  <h2>What you'll learn:</h2>
+  <ul id="learnList">
+    <!-- List items will be added dynamically here -->
+  </ul>
+  <button id="addButton">Add Next Item</button>
+
+  <script>
+    // Pre-existing array of items
+    const itemList = [
+      "Introduction to JavaScript",
+      "Variables and Data Types",
+      "Control Flow and Functions",
+      "Arrays and Objects",
+      "DOM Manipulation and Events"
+      // Add more items as needed
+    ];
+
+    // Select the list element
+    const learnList = document.getElementById('learnList');
+
+    // Select the button element
+    const addButton = document.getElementById('addButton');
+
+    // Counter to track the current item index
+    let currentItemIndex = 0;
+
+    // Function to add next item to the list
+    function addNextItem() {
+      if (currentItemIndex < itemList.length) {
+        const newItem = document.createElement('li');
+        newItem.textContent = itemList[currentItemIndex];
+        learnList.appendChild(newItem);
+        currentItemIndex++;
+      } else {
+        addButton.disabled = true;
+        addButton.textContent = "No more items";
+      }
+    }
+
+    // Add event listener to the button
+    addButton.addEventListener('click', addNextItem);
+
+    // Initial load: Add the first item
+    addNextItem();
+  </script>
+</body>
+</html>
